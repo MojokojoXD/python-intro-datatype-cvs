@@ -32,7 +32,7 @@ cupcake_file.seek(0,0);
 
 print(f'{total:.5g}');
 
-total_for_flavor = [0,0,0,]
+total_for_flavor = [0,0,0]
 for row in cupcake_file:
     breakdown = row.rstrip('\n').split(','); 
     result = float(breakdown[3])* float(breakdown[4]);
@@ -46,7 +46,9 @@ for row in cupcake_file:
 cupcake_file.seek(0,0);
 cupcake_file.close();
 
-fig = go.Figure([go.Bar(x=['Chocolate','Strawberry','Vanilla'], y= total_for_flavor)])
+fig = go.Figure([go.Bar(x=['Chocolate','Strawberry','Vanilla'], y= total_for_flavor, marker_color = ['brown','#F3E5AB','#fc5a8d'])])
 
-
+fig.update_layout(title = 'Flavor vs Total sold'
+                    , yaxis = dict(title = 'Total sold'),
+                    xaxis = dict(title = 'Flavours'))
 fig.show()
